@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>JS Calculator</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <div id="main">
+  <input type="dummy" />
+  <h2>WILLIS JS500i ELECTRONIC</h2>
+  <div  id="screen"><p1 id="display1">0</p1><p2 id="display2">Ans</p2></div>
+  <hr></hr>
+  <div id="keypad">
+  <button id = "mrBtn">MR</button>
+    <button id = "mPlusBtn">M+</button>
+    <button id = "mMinusBtn">M-</button>
+    <button id = "percentBtn">%</button>
+    <button id = "divisionBtn" data-op="/" class="operator">/</button>
+    <button id = "shortcuts"><i class="fa fa-keyboard-o" aria-hidden="true"></i></button>
+    <button data-num="7" class="number">7</button>
+    <button data-num="8" class="number">8</button>
+    <button data-num="9" class="number">9</button>
+    <button id = "timesBtn" data-op="*"class="operator">X</button>
+    <button id = "posnegBtn">+/-</button>
+    <button data-num="4" class="number">4</button>
+    <button data-num="5" class="number">5</button>
+    <button data-num="6" class="number">6</button>
+    <button id = "minusBtn" data-op="-"class="operator">-</button>
+    <button id = "clearBtn">C</button>
+    <button data-num="1" class="number">1</button>
+    <button data-num="2" class="number">2</button>
+    <button data-num="3" class="number">3</button>
+    <button id = "plusBtn" data-op="+" class="operator">+</button>
+    <button id = "allClearBtn">AC</button>
+    <button id = "zeroBtn" data-num="0" class="number">0</button>
+    <button id = "decimalBtn">.</button>
+    <button id = "equalsBtn">=</button>
+  </div>
+</div>
+<div id="popup">
+  <p1>Use numeric keypad and operators:</p1>
+  <ul>
+  <li>[ENTER]: Get answer (=)</li>
+    <li>[SPACE]: Clear all - including memory (AC)</li>
+  <ul>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
