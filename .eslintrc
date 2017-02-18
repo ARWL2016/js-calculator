@@ -1,0 +1,25 @@
+{
+  "root": true,//sets default eslint file
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings", 
+    "jquery"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
+  },
+  //teach eslint to expect certain globals 
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  //define override rules - 0 Off, 1 Warning, 2 Error
+  "rules": {
+    "no-console": 0,  //cannot write to console
+    "space-in-parens": ["error", "never"], 
+    "linebreak-style": ["error", "windows"]
+  }
+}
