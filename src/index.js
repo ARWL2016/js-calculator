@@ -1,5 +1,7 @@
 "use strict";
 
+var $ = require("jQuery");
+
 $(document).ready(function() {
 $("input").focus();
 $("body").on("click", function() {

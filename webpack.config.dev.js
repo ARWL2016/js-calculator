@@ -1,4 +1,5 @@
 var path = require('path'); 
+var webpack = require('webpack'); 
 
 module.exports = {
   devtool: 'inline-souce-map',
@@ -12,6 +13,7 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  
 
   // module: {
   //   loaders: [
