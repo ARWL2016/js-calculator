@@ -9,25 +9,18 @@ module.exports = {
 
     target: "web", //default
     output: {
-        path: path.resolve(__dirname, 'app/build'),
+        path: path.resolve(__dirname, 'dist/build'),
         publicPath: '/',
         filename: 'bundle.js'
     },
 
 
     module: {
-        loaders: [
-          {
+        loaders: [{
             test: /\.js$/,
             exclude: /node_modules/,
             loaders: ['babel-loader']
-          }, 
-          {
-            test: /\.css$/, 
-            exclude: /node_modules/, 
-            loader: 'style-loader!css-loader'
-          }
-        ]
+        }]
     }
 
 
