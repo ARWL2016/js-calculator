@@ -1,13 +1,16 @@
 {
   "name": "js-calculator",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.9.2"
+  },
   "description": "https://www.freecodecamp.com/challenges/build-a-javascript-calculator  \r https://github.com/ARWL2016/js-calculator   \r http://codepen.io/arw2014e5/pen/gLpWgj",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "open": "babel-node build-scripts/dev-server.js",
-    "lint": "eslint src/index.js build-scripts --fix",
-    "build": "webpack --config webpack.config.dev.js"
+    "start:dev": "babel-node buildScripts/dev-server.js",
+    "lint": "eslint src/app.js buildScripts --fix",
+    "build": "webpack --config webpack.config.dev.js",
+    "start": "node buildScripts/prod-server.js"
   },
   "repository": {
     "type": "git",
@@ -29,9 +32,11 @@
     "eslint": "^3.15.0",
     "eslint-config-jquery": "^1.0.0",
     "eslint-plugin-import": "^2.2.0",
-    "express": "^4.14.1",
-    "jquery": "^3.1.1",
     "open": "0.0.5",
     "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "jquery": "^3.2.1"
   }
 }

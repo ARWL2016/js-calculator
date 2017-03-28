@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     //REMOVE REDUNDANT OPERANDS AT END OF ENTRY
     function solveRepeatedOps() {
-        let lastItem = enteredEq[enteredEq.length - 1];
+        let lastItem = enteredEq[ enteredEq.length - 1 ];
         let pattern = /\+|\-|\*|\//;
         if (isNaN(lastItem) && pattern.test(lastItem)) {
             enteredEq.pop();
@@ -43,14 +43,14 @@ $(document).ready(function() {
 
     //REMOVE INITIAL * AND /
     function solveInitialOpsError() {
-        if (enteredEq[0] === "*" || enteredEq[0] === "/") {
+        if (enteredEq[ 0 ] === "*" || enteredEq[ 0 ] === "/") {
             enteredEq.shift();
         }
     }
 
     //REMOVE INITIAL ZEROES
     function solveRepeatedZero() {
-        if (enteredEq[0] === 0 && enteredEq[1] !== ".") {
+        if (enteredEq[ 0 ] === 0 && enteredEq[ 1 ] !== ".") {
             enteredEq.pop();
         }
     }
@@ -118,8 +118,6 @@ $(document).ready(function() {
 
     // DECIMAL POINT BUTTON
     $("#decimalBtn").on("click", function() {
-
-        //if(enteredEq[enteredEq.length-1] !== ".") {
         if (enteredEq.indexOf(".") === -1) {
             if (enteredEq.length === 0) {
                 enteredEq.push("0", ".");
@@ -142,17 +140,17 @@ $(document).ready(function() {
 
     // +/- BUTTON
     $("#posnegBtn").on("click", function() {
-        if (enteredEq[0] === "+" || enteredEq.length === 0) {
+        if (enteredEq[ 0 ] === "+" || enteredEq.length === 0) {
             enteredEq.shift();
             enteredEq.unshift("-");
-        } else if (enteredEq[0] === "-" || enteredEq.length === 0) {
+        } else if (enteredEq[ 0 ] === "-" || enteredEq.length === 0) {
             enteredEq.shift();
             enteredEq.unshift("+");
         } else {
-            if (enteredEq[enteredEq.length - 1] === "-") {
+            if (enteredEq[ enteredEq.length - 1 ] === "-") {
                 enteredEq.pop();
                 enteredEq.push("+");
-            } else if (enteredEq[enteredEq.length - 1] === "+") {
+            } else if (enteredEq[ enteredEq.length - 1 ] === "+") {
                 enteredEq.pop();
                 enteredEq.push("-");
             } else {
@@ -179,7 +177,7 @@ $(document).ready(function() {
     });
 
     $("#mrBtn").on("click", function() {
-        if (enteredEq[enteredEq.length - 1] !== memoryTotal) {
+        if (enteredEq[ enteredEq.length - 1 ] !== memoryTotal) {
             enteredEq.push(memoryTotal);
             updateDisplay1();
         }
