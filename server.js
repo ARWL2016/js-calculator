@@ -1,3 +1,5 @@
+// Using live-server, so this is now defunct
+
 var express = require("express");
 var path = require("path");
 var open = require("open");

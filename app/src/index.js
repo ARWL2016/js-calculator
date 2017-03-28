@@ -13,7 +13,7 @@ $(document).ready(function() {
         memoryTotal = 0;
 
     /*-----------------------------------------------------
-    FUNCTIONS
+    FUNCTION
     ------------------------------------------------------*/
     //UPDATE THE PRIMARY DISPLAY AFTER USER ENTRY
     function updateDisplay1() {
