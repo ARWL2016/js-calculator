@@ -4,11 +4,7 @@ var path = require("path");
 var app = express();
 var port = process.env.PORT || 3000;
 
-app.use(express.static("src"));
-
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../src/index.html"));
-});
+app.use(express.static("app"));
 
 app.listen(port, (err) => {
     if (err) {
