@@ -13,7 +13,9 @@
     "lint": "eslint app/src/index.js dist server.js --fix",
     "lint:watch": "watch \"npm run lint\" .",
     "build:dev": "webpack --config webpack.config.dev.js",
-    "build:watch": "webpack -w --config webpack.config.dev.js"
+    "build:watch": "webpack -w --config webpack.config.dev.js", 
+    "deploy": "git push heroku master", 
+    "postdeploy": "heroku open"
   },
   "repository": {
     "type": "git",
