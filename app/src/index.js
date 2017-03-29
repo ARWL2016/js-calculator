@@ -1,6 +1,7 @@
 "use strict";
 
 var $ = require("jQuery");
+var _ = require("underscore"); 
 require("./scss/style.scss");
 
 $(document).ready(function() {
@@ -9,7 +10,7 @@ $(document).ready(function() {
         $("input").focus();
     });
 
-    var enteredEq = [],
+    var input = [],
         result,
         memoryTotal = 0;
 
@@ -17,58 +18,56 @@ $(document).ready(function() {
     FUNCTION
     ------------------------------------------------------*/
     //UPDATE THE PRIMARY DISPLAY AFTER USER ENTRY
-    function updateDisplay1() {
-        if (enteredEq.length === 0) {
-            console.log(enteredEq, typeof enteredEq)
-            $("#display1").html(0);
+    function updateMainDisplay() {
+        if (input.length === 0) {
+            document.getElementById("display1").innerText = 0;
         } else {
-            $("#display1").html(enteredEq);
-            console.log(enteredEq, typeof enteredEq)
+            $("#display1").html(input);
         }
     }
 
     //ADAPT PRIMARY DISPLAY FOR LONG ENTRIES
     function maxEnter() {
-        if (enteredEq.length > 14) {
+        if (input.length > 14) {
             $("#display1").css("font-size", "0.5em");
         }
     }
 
     //REMOVE REDUNDANT OPERANDS AT END OF ENTRY
     function solveRepeatedOps() {
-        const lastItem = enteredEq[enteredEq.length - 1];
+        const lastItem = _.last(input);
         const pattern = /\+|\-|\*|\//;
         if (isNaN(lastItem) && pattern.test(lastItem)) {
-            enteredEq.pop();
+            input.pop();
             return solveRepeatedOps();
         }
     }
 
     //REMOVE INITIAL * AND /
     function solveInitialOpsError() {
-        if (enteredEq[0] === "*" || enteredEq[0] === "/") {
-            enteredEq.shift();
+        if (input[0] === "*" || input[0] === "/") {
+            input.shift();
         }
     }
 
     //REMOVE INITIAL ZEROES
     function solveRepeatedZero() {
-        if (enteredEq[0] === 0 && enteredEq[1] !== ".") {
-            enteredEq.pop();
+        if (input[0] === 0 && input[1] !== ".") {
+            input.pop();
         }
     }
 
     //RESOLVE ARRAY AFTER = PRESSED
     function getAnswer() {
         solveRepeatedOps();
-        result = eval(enteredEq.join(""));
+        result = eval(input.join(""));
         result = +result.toFixed(9);
         if (result > 999999999999) {
             result = result.toExponential(2);
         }
         $("#display1").html(result).css("font-size", "1em");
-        $("#display2").html(enteredEq);
-        enteredEq = [];
+        $("#display2").html(input);
+        input = [];
     }
 
     /*-------------------------------------------------
@@ -76,7 +75,7 @@ $(document).ready(function() {
     --------------------------------------------------*/
     // AC BUTTON
     $("#allClearBtn").on("click", function() {
-        enteredEq = [];
+        input = [];
         console.log(this);
         $("#display1").html(0).css("font-size", "1em");
         $("#display2").html("Ans");
@@ -87,82 +86,79 @@ $(document).ready(function() {
 
     // C BUTTON - CLEAR LAST ENTRY ONLY
     $("#clearBtn").on("click", function() {
-        enteredEq.pop();
-        updateDisplay1();
-
-        // memoryTotal === 0 ? $("#display2").html("Ans") : $("#display2").html("memory: " + memoryTotal);
+        input.pop();
+        updateMainDisplay();
 
         if (memoryTotal === 0) {
-            $("#display2").html("Ans");
+            document.getElementById("display2").innerText = "Ans";
         } else {
-            $("#display2").html("memory: " + memoryTotal);
+            document.getElementById("display2").innerText= `memory: ${memoryTotal}`; 
         }
     });
 
     //GET INPUT FROM BUTTON ATTRIBUTES: NUMBERS
     $(".number-btn").on("click", function() {
-        let inputNum = $(this).data("num");
-        console.log(this);
-        enteredEq.push(inputNum);
+        const inputNum = $(this).data("num");
+        input.push(inputNum);
         if (inputNum === 0) {
             solveRepeatedZero();
         }
         maxEnter();
-        updateDisplay1();
+        updateMainDisplay();
     });
 
     // OPERATORS +-/*
     $(".op-btn").on("click", function() {
-        let inputOp = $(this).data("op");
+        const inputOp = $(this).data("op");
         solveRepeatedOps();
-        enteredEq.push(inputOp);
+        input.push(inputOp);
         solveInitialOpsError();
         maxEnter();
-        updateDisplay1();
+        updateMainDisplay();
     });
 
     // DECIMAL POINT BUTTON
     $("#decimalBtn").on("click", function() {
-        if (enteredEq.indexOf(".") === -1) {
-            if (enteredEq.length === 0) {
-                enteredEq.push("0", ".");
+        if (input.indexOf(".") === -1) {
+            if (input.length === 0) {
+                input.push("0", ".");
             } else {
-                enteredEq.push(".");
+                input.push(".");
             }
         }
-        updateDisplay1();
+        updateMainDisplay();
     });
 
     $("#percentBtn").on("click", function() {
-        if (enteredEq.length !== 0) {
-            enteredEq.push("/", 100);
-            updateDisplay1();
+        if (input.length !== 0) {
+            input.push("/", 100);
+            updateMainDisplay();
         } else {
-            enteredEq.push(result, "/", 100);
+            input.push(result, "/", 100);
             getAnswer();
         }
     });
 
     // +/- BUTTON
     $("#posnegBtn").on("click", function() {
-        if (enteredEq[0] === "+" || enteredEq.length === 0) {
-            enteredEq.shift();
-            enteredEq.unshift("-");
-        } else if (enteredEq[0] === "-" || enteredEq.length === 0) {
-            enteredEq.shift();
-            enteredEq.unshift("+");
+        if (input[0] === "+" || input.length === 0) {
+            input.shift();
+            input.unshift("-");
+        } else if (input[0] === "-" || input.length === 0) {
+            input.shift();
+            input.unshift("+");
         } else {
-            if (enteredEq[enteredEq.length - 1] === "-") {
-                enteredEq.pop();
-                enteredEq.push("+");
-            } else if (enteredEq[enteredEq.length - 1] === "+") {
-                enteredEq.pop();
-                enteredEq.push("-");
+            if (_.last(input) === "-") {
+                input.pop();
+                input.push("+");
+            } else if (_.last(input) === "+") {
+                input.pop();
+                input.push("-");
             } else {
-                enteredEq.push("-");
+                input.push("-");
             }
         }
-        updateDisplay1();
+        updateMainDisplay();
     });
 
     // = BUTTON
@@ -173,18 +169,18 @@ $(document).ready(function() {
     // MEMORY FUNCTIONS - M+, M- and MR
     $("#mPlusBtn").on("click", function() {
         memoryTotal += result;
-        $("#display2").html("memory: " + memoryTotal);
+        document.getElementById("display2").innerText= `memory: ${memoryTotal}`; 
     });
 
     $("#mMinusBtn").on("click", function() {
         memoryTotal -= result;
-        $("#display2").html("memory: " + memoryTotal);
+        document.getElementById("display2").innerText= `memory: ${memoryTotal}`; 
     });
 
     $("#mrBtn").on("click", function() {
-        if (enteredEq[enteredEq.length - 1] !== memoryTotal) {
-            enteredEq.push(memoryTotal);
-            updateDisplay1();
+        if (_.last(input) !== memoryTotal) {
+            input.push(memoryTotal);
+            updateMainDisplay();
         }
     });
 

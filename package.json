@@ -1,55 +1,56 @@
 {
-    "name": "js-calculator",
-    "version": "1.0.0",
-    "engines": {
-        "node": "6.9.2"
-    },
-    "description": "https://www.freecodecamp.com/challenges/build-a-javascript-calculator  \r https://github.com/ARWL2016/js-calculator   \r http://codepen.io/arw2014e5/pen/gLpWgj",
-    "main": "index.js",
-    "scripts": {
-        "start": "node dist/prod-server.js",
-        "start:watch": "live-server app",
-        "start:dev": "npm-run-all --parallel start:watch build:watch",
-        "lint": "eslint app/src/index.js dist server.js --fix",
-        "lint:watch": "watch \"npm run lint\" .",
-        "build:dev": "webpack --config webpack.config.dev.js",
-        "build:watch": "webpack -w --config webpack.config.dev.js",
-        "build:prod": "webpack --config webpack.config.prod.js -p",
-        "deploy": "git push heroku master",
-        "postdeploy": "heroku open"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ARWL2016/js-calculator.git"
-    },
-    "author": "Alistair Willis",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/ARWL2016/js-calculator/issues"
-    },
-    "homepage": "https://github.com/ARWL2016/js-calculator#readme",
-    "devDependencies": {
-        "babel-cli": "^6.23.0",
-        "babel-core": "^6.23.1",
-        "babel-loader": "^6.3.2",
-        "babel-preset-latest": "^6.22.0",
-        "babel-register": "^6.23.0",
-        "chalk": "^1.1.3",
-        "css-loader": "^0.27.3",
-        "eslint": "^3.15.0",
-        "eslint-config-jquery": "^1.0.0",
-        "eslint-plugin-import": "^2.2.0",
-        "live-server": "^1.2.0",
-        "node-sass": "^4.5.1",
-        "npm-run-all": "^4.0.2",
-        "open": "0.0.5",
-        "sass-loader": "^6.0.3",
-        "style-loader": "^0.16.0",
-        "watch": "^1.0.2",
-        "webpack": "^2.2.1"
-    },
-    "dependencies": {
-        "express": "^4.15.2",
-        "jquery": "^3.2.1"
-    }
+  "name": "js-calculator",
+  "version": "1.0.0",
+  "engines": {
+    "node": "6.9.2"
+  },
+  "description": "https://www.freecodecamp.com/challenges/build-a-javascript-calculator  \r https://github.com/ARWL2016/js-calculator   \r http://codepen.io/arw2014e5/pen/gLpWgj",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/prod-server.js",
+    "start:watch": "live-server app",
+    "start:dev": "npm-run-all --parallel start:watch build:watch",
+    "lint": "eslint app/src/index.js dist server.js --fix",
+    "lint:watch": "watch \"npm run lint\" .",
+    "build:dev": "webpack --config webpack.config.dev.js",
+    "build:watch": "webpack -w --config webpack.config.dev.js",
+    "build:prod": "webpack --config webpack.config.prod.js -p",
+    "deploy": "git push heroku master",
+    "postdeploy": "heroku open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ARWL2016/js-calculator.git"
+  },
+  "author": "Alistair Willis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ARWL2016/js-calculator/issues"
+  },
+  "homepage": "https://github.com/ARWL2016/js-calculator#readme",
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-latest": "^6.22.0",
+    "babel-register": "^6.23.0",
+    "chalk": "^1.1.3",
+    "css-loader": "^0.27.3",
+    "eslint": "^3.15.0",
+    "eslint-config-jquery": "^1.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "live-server": "^1.2.0",
+    "node-sass": "^4.5.1",
+    "npm-run-all": "^4.0.2",
+    "open": "0.0.5",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.0",
+    "watch": "^1.0.2",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "jquery": "^3.2.1",
+    "underscore": "^1.8.3"
+  }
 }
