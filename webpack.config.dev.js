@@ -16,17 +16,20 @@ module.exports = {
 
 
     module: {
-        loaders: [
-          {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loaders: ['babel-loader']
-          }, 
-          {
-            test: /\.css$/, 
-            exclude: /node_modules/, 
-            loader: 'style-loader!css-loader'
-          }
+        loaders: [{
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loaders: ['babel-loader']
+            },
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" },
+                    { loader: "sass-loader" }
+                ]
+            }
         ]
     }
 

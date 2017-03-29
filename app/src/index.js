@@ -1,7 +1,7 @@
 "use strict";
 
 var $ = require("jQuery");
-require('./style.css'); 
+require("./style.scss");
 
 $(document).ready(function() {
     $("input").focus();
@@ -248,4 +248,3 @@ $(document).ready(function() {
     });
 
 }); //docready
-
