@@ -10,15 +10,15 @@
 </head>
 
 <body>
-    <div id="main">
-        <input type="dummy" />
+    <div id="main" class="calculator">
+        <input class="dummy" />
         <h2>WILLIS JS500i ELECTRONIC</h2>
-        <div id="screen">
-            <p1 id="display1">0</p1>
-            <p2 id="display2">Ans</p2>
+        <div id="screen" class="screen">
+            <p1 id="display1" class="display-primary">0</p1>
+            <p2 id="display2" class="display-secondary">Ans</p2>
         </div>
-        <hr></hr>
-        <div id="keypad">
+        <hr>
+        <div id="keypad" class="keypad">
             <button id="mrBtn" class="keypad-btn">MR</button>
             <button id="mPlusBtn" class="keypad-btn">M+</button>
             <button id="mMinusBtn" class="keypad-btn">M-</button>
@@ -38,7 +38,7 @@
             <button data-num="1" class="keypad-btn number-btn">1</button>
             <button data-num="2" class="keypad-btn number-btn">2</button>
             <button data-num="3" class="keypad-btn number-btn">3</button>
-            <button id="plusBtn" class="keypad-btn plus-btn" data-op="+" class="op-btn">+</button>
+            <button id="plusBtn" class="keypad-btn op-btn plus-btn" data-op="+">+</button>
             <button id="allClearBtn" class="keypad-btn clear-btn">AC</button>
             <button id="zeroBtn" data-num="0" class="keypad-btn number-btn">0</button>
             <button id="decimalBtn" class="keypad-btn">.</button>
@@ -50,7 +50,7 @@
         <ul>
             <li>[ENTER]: Get answer (=)</li>
             <li>[SPACE]: Clear all - including memory (AC)</li>
-            <ul>
+        </ul>
     </div>
     <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>-->
     <script src="build/bundle.js"></script>

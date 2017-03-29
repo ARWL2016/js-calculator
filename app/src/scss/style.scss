@@ -13,7 +13,7 @@ h2 {
     text-align: center;
 }
 
-input {
+.dummy {
     height: 0px;
     width: 100%;
     border: 0;
@@ -21,15 +21,15 @@ input {
     margin: 0;
 }
 
-p1,
-p2 {
+.display-primary,
+.display-secondary {
     display: block;
     font-size: 1em;
     padding: 0 5px 0 5px;
     word-wrap: break-word;
 }
 
-p2 {
+.display-secondary {
     font-size: 0.4em;
     position: absolute;
     bottom: 0px;
@@ -45,7 +45,7 @@ li {
     list-style-type: none;
 }
 
-#main,
+.calculator,
 #popup {
     background-color: #D9D9CD;
     border-radius: 10px;
@@ -57,7 +57,7 @@ li {
     height: 410px;
 }
 
-#screen {
+.screen {
     background-color: $screen-color;
     font-size: 2em;
     height: 55px;
@@ -73,7 +73,7 @@ li {
     text-align: right;
 }
 
-#keypad {
+.keypad {
     margin: 0 auto;
     margin-top: 10px;
     height: 200px;
