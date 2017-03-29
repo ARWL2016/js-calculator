@@ -34,32 +34,30 @@ $(document).ready(function() {
     }
 
     //REMOVE REDUNDANT OPERANDS AT END OF ENTRY
-    function solveRepeatedOps() {
+    function removeExtraOps() {
         const lastItem = _.last(input);
         const pattern = /\+|\-|\*|\//;
         if (isNaN(lastItem) && pattern.test(lastItem)) {
             input.pop();
-            return solveRepeatedOps();
+            return removeExtraOps();
         }
     }
 
     //REMOVE INITIAL * AND /
-    function solveInitialOpsError() {
+    function removeInitialOps() {
         if (input[0] === "*" || input[0] === "/") {
             input.shift();
         }
     }
 
-    //REMOVE INITIAL ZEROES
-    function solveRepeatedZero() {
+    function removeExtraZeroes() {
         if (input[0] === 0 && input[1] !== ".") {
             input.pop();
         }
     }
 
-    //RESOLVE ARRAY AFTER = PRESSED
     function getAnswer() {
-        solveRepeatedOps();
+        removeExtraOps();
         result = eval(input.join(""));
         result = +result.toFixed(9);
         if (result > 999999999999) {
@@ -73,7 +71,6 @@ $(document).ready(function() {
     /*-------------------------------------------------
     BUTTON CLICK EVENTS
     --------------------------------------------------*/
-    // AC BUTTON
     $("#allClearBtn").on("click", function() {
         input = [];
         console.log(this);
@@ -81,10 +78,8 @@ $(document).ready(function() {
         $("#display2").html("Ans");
         memoryTotal = 0;
         result = 0;
-
     });
 
-    // C BUTTON - CLEAR LAST ENTRY ONLY
     $("#clearBtn").on("click", function() {
         input.pop();
         updateMainDisplay();
@@ -96,28 +91,25 @@ $(document).ready(function() {
         }
     });
 
-    //GET INPUT FROM BUTTON ATTRIBUTES: NUMBERS
     $(".number-btn").on("click", function() {
         const inputNum = $(this).data("num");
         input.push(inputNum);
         if (inputNum === 0) {
-            solveRepeatedZero();
+            removeExtraZeroes();
         }
         maxEnter();
         updateMainDisplay();
     });
 
-    // OPERATORS +-/*
     $(".op-btn").on("click", function() {
         const inputOp = $(this).data("op");
-        solveRepeatedOps();
+        removeExtraOps();
         input.push(inputOp);
-        solveInitialOpsError();
+        removeInitialOps();
         maxEnter();
         updateMainDisplay();
     });
 
-    // DECIMAL POINT BUTTON
     $("#decimalBtn").on("click", function() {
         if (input.indexOf(".") === -1) {
             if (input.length === 0) {
@@ -139,7 +131,6 @@ $(document).ready(function() {
         }
     });
 
-    // +/- BUTTON
     $("#posnegBtn").on("click", function() {
         if (input[0] === "+" || input.length === 0) {
             input.shift();
