@@ -34,8 +34,8 @@ $(document).ready(function() {
 
     //REMOVE REDUNDANT OPERANDS AT END OF ENTRY
     function solveRepeatedOps() {
-        let lastItem = enteredEq[enteredEq.length - 1];
-        let pattern = /\+|\-|\*|\//;
+        const lastItem = enteredEq[enteredEq.length - 1];
+        const pattern = /\+|\-|\*|\//;
         if (isNaN(lastItem) && pattern.test(lastItem)) {
             enteredEq.pop();
             return solveRepeatedOps();
