@@ -1,7 +1,7 @@
 "use strict";
 
 var $ = require("jQuery");
-require("./style.scss");
+require("./scss/style.scss");
 
 $(document).ready(function() {
     $("input").focus();
