@@ -73,6 +73,8 @@
 "use strict";
 
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var $ = __webpack_require__(7);
 __webpack_require__(10);
 
@@ -92,9 +94,11 @@ $(document).ready(function () {
     //UPDATE THE PRIMARY DISPLAY AFTER USER ENTRY
     function updateDisplay1() {
         if (enteredEq.length === 0) {
+            console.log(enteredEq, typeof enteredEq === "undefined" ? "undefined" : _typeof(enteredEq));
             $("#display1").html(0);
         } else {
             $("#display1").html(enteredEq);
+            console.log(enteredEq, typeof enteredEq === "undefined" ? "undefined" : _typeof(enteredEq));
         }
     }
 

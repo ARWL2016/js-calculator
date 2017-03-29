@@ -19,9 +19,11 @@ $(document).ready(function() {
     //UPDATE THE PRIMARY DISPLAY AFTER USER ENTRY
     function updateDisplay1() {
         if (enteredEq.length === 0) {
+            console.log(enteredEq, typeof enteredEq)
             $("#display1").html(0);
         } else {
             $("#display1").html(enteredEq);
+            console.log(enteredEq, typeof enteredEq)
         }
     }
 
