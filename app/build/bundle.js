@@ -148,6 +148,7 @@ $(document).ready(function () {
     // AC BUTTON
     $("#allClearBtn").on("click", function () {
         enteredEq = [];
+        console.log(this);
         $("#display1").html(0).css("font-size", "1em");
         $("#display2").html("Ans");
         memoryTotal = 0;
@@ -169,9 +170,9 @@ $(document).ready(function () {
     });
 
     //GET INPUT FROM BUTTON ATTRIBUTES: NUMBERS
-    $(".number").on("click", function () {
+    $(".number-btn").on("click", function () {
         var inputNum = $(this).data("num");
-        console.log(inputNum);
+        console.log(this);
         enteredEq.push(inputNum);
         if (inputNum === 0) {
             solveRepeatedZero();
@@ -181,7 +182,7 @@ $(document).ready(function () {
     });
 
     // OPERATORS +-/*
-    $(".operator").on("click", function () {
+    $(".op-btn").on("click", function () {
         var inputOp = $(this).data("op");
         solveRepeatedOps();
         enteredEq.push(inputOp);
@@ -241,12 +242,12 @@ $(document).ready(function () {
 
     // MEMORY FUNCTIONS - M+, M- and MR
     $("#mPlusBtn").on("click", function () {
-        memoryTotal = memoryTotal + result;
+        memoryTotal += result;
         $("#display2").html("memory: " + memoryTotal);
     });
 
     $("#mMinusBtn").on("click", function () {
-        memoryTotal = memoryTotal - result;
+        memoryTotal -= result;
         $("#display2").html("memory: " + memoryTotal);
     });
 
