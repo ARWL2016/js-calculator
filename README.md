@@ -9,3 +9,4 @@ http://codepen.io/arw2014e5/pen/gLpWgj
 #### Branches 
 Master
 Codepen - contains original project  
+JQuery - project prior to replacing JQuery with native JS

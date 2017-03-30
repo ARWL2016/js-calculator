@@ -1,7 +1,7 @@
 "use strict";
 
-var $ = require("jQuery");
-var _ = require("underscore"); 
+const $ = require("jQuery");
+const _ = require("underscore");
 require("./scss/style.scss");
 
 $(document).ready(function() {
@@ -10,9 +10,10 @@ $(document).ready(function() {
         $("input").focus();
     });
 
-    var input = [],
-        result,
-        memoryTotal = 0;
+    let input = [];
+    let result = 0;
+    let memoryTotal = 0;
+    let display_Main = document.getElementById("display_Main");
 
     /*-----------------------------------------------------
     FUNCTION
@@ -20,16 +21,16 @@ $(document).ready(function() {
     //UPDATE THE PRIMARY DISPLAY AFTER USER ENTRY
     function updateMainDisplay() {
         if (input.length === 0) {
-            document.getElementById("display1").innerText = 0;
+            display_Main.innerText = 0;
         } else {
-            $("#display1").html(input);
+            $("#display_Main").html(input);
         }
     }
 
     //ADAPT PRIMARY DISPLAY FOR LONG ENTRIES
     function maxEnter() {
         if (input.length > 14) {
-            $("#display1").css("font-size", "0.5em");
+            $("#display_Main").css("font-size", "0.5em");
         }
     }
 
@@ -63,7 +64,7 @@ $(document).ready(function() {
         if (result > 999999999999) {
             result = result.toExponential(2);
         }
-        $("#display1").html(result).css("font-size", "1em");
+        $("#display_Main").html(result).css("font-size", "1em");
         $("#display2").html(input);
         input = [];
     }
@@ -71,11 +72,12 @@ $(document).ready(function() {
     /*-------------------------------------------------
     BUTTON CLICK EVENTS
     --------------------------------------------------*/
-    $("#allClearBtn").on("click", function() {
+
+    document.getElementById("allClearBtn").addEventListener("click", () => {
         input = [];
-        console.log(this);
-        $("#display1").html(0).css("font-size", "1em");
-        $("#display2").html("Ans");
+        display_Main.innerText = 0;
+        display_Main.setAttribute("style", "font-size: 1em");
+        document.getElementById("#display2").innerText = "Ans";
         memoryTotal = 0;
         result = 0;
     });
@@ -87,7 +89,7 @@ $(document).ready(function() {
         if (memoryTotal === 0) {
             document.getElementById("display2").innerText = "Ans";
         } else {
-            document.getElementById("display2").innerText= `memory: ${memoryTotal}`; 
+            document.getElementById("display2").innerText = `memory: ${memoryTotal}`;
         }
     });
 
@@ -160,12 +162,12 @@ $(document).ready(function() {
     // MEMORY FUNCTIONS - M+, M- and MR
     $("#mPlusBtn").on("click", function() {
         memoryTotal += result;
-        document.getElementById("display2").innerText= `memory: ${memoryTotal}`; 
+        document.getElementById("display2").innerText = `memory: ${memoryTotal}`;
     });
 
     $("#mMinusBtn").on("click", function() {
         memoryTotal -= result;
-        document.getElementById("display2").innerText= `memory: ${memoryTotal}`; 
+        document.getElementById("display2").innerText = `memory: ${memoryTotal}`;
     });
 
     $("#mrBtn").on("click", function() {
