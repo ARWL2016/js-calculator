@@ -10,3 +10,6 @@ http://codepen.io/arw2014e5/pen/gLpWgj
 Master
 Codepen - contains original project  
 JQuery - project prior to replacing JQuery with native JS
+
+#### Notes 
+- decimal function allows input such as 1.2.3 - how can we avoid this but still allow 1.2 * 2.3 etc? 

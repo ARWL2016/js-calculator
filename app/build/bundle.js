@@ -78,46 +78,36 @@ var _ = __webpack_require__(11);
 __webpack_require__(10);
 
 $(document).ready(function () {
-    $("input").focus();
-    $("body").on("click", function () {
-        $("input").focus();
-    });
 
     var input = [];
     var result = 0;
     var memoryTotal = 0;
     var display_Main = document.getElementById("display_Main");
+    var display_Sub = document.getElementById("display_Sub");
+    var MAX_RESULT = 999999999999;
 
     /*-----------------------------------------------------
-    FUNCTION
+    UTILS 
     ------------------------------------------------------*/
-    //UPDATE THE PRIMARY DISPLAY AFTER USER ENTRY
+
     function updateMainDisplay() {
-        if (input.length === 0) {
-            display_Main.innerText = 0;
-        } else {
-            $("#display_Main").html(input);
-        }
+        display_Main.innerText = input.length === 0 ? 0 : input.join('');
     }
 
-    //ADAPT PRIMARY DISPLAY FOR LONG ENTRIES
-    function maxEnter() {
+    function reduceMainDisplaySize() {
         if (input.length > 14) {
-            $("#display_Main").css("font-size", "0.5em");
+            display_Main.setAttribute("style", "font-size: 0.5em");
         }
     }
 
-    //REMOVE REDUNDANT OPERANDS AT END OF ENTRY
     function removeExtraOps() {
-        var lastItem = _.last(input);
         var pattern = /\+|\-|\*|\//;
-        if (isNaN(lastItem) && pattern.test(lastItem)) {
+        if (isNaN(_.last(input)) && pattern.test(_.last(input))) {
             input.pop();
             return removeExtraOps();
         }
     }
 
-    //REMOVE INITIAL * AND /
     function removeInitialOps() {
         if (input[0] === "*" || input[0] === "/") {
             input.shift();
@@ -134,11 +124,12 @@ $(document).ready(function () {
         removeExtraOps();
         result = eval(input.join(""));
         result = +result.toFixed(9);
-        if (result > 999999999999) {
+        if (result > MAX_RESULT) {
             result = result.toExponential(2);
         }
-        $("#display_Main").html(result).css("font-size", "1em");
-        $("#display2").html(input);
+        display_Main.innerHTML = result;
+        display_Main.setAttribute("style", "font-size: 1em");
+        display_Sub.innerText = input.join('');
         input = [];
     }
 
@@ -150,59 +141,58 @@ $(document).ready(function () {
         input = [];
         display_Main.innerText = 0;
         display_Main.setAttribute("style", "font-size: 1em");
-        document.getElementById("#display2").innerText = "Ans";
+        document.getElementById("display_Sub").innerText = "Ans";
         memoryTotal = 0;
         result = 0;
     });
 
-    $("#clearBtn").on("click", function () {
+    document.getElementById("clearBtn").addEventListener("click", function () {
         input.pop();
         updateMainDisplay();
-
         if (memoryTotal === 0) {
-            document.getElementById("display2").innerText = "Ans";
+            display_Sub.innerText = "Ans";
         } else {
-            document.getElementById("display2").innerText = "memory: " + memoryTotal;
+            display_Sub.innerText = "memory: " + memoryTotal;
         }
     });
 
-    $(".number-btn").on("click", function () {
-        var inputNum = $(this).data("num");
-        input.push(inputNum);
-        if (inputNum === 0) {
-            removeExtraZeroes();
+    document.getElementById("keypad").addEventListener("click", function (e) {
+        var inputData = e.target.innerText;
+        // console.log(e.target.id);
+        if (inputData.match(/[0-9]/)) {
+            input.push(inputData);
+            if (inputData === 0) {
+                removeExtraZeroes();
+            }
+            reduceMainDisplaySize();
+            updateMainDisplay();
         }
-        maxEnter();
-        updateMainDisplay();
-    });
-
-    $(".op-btn").on("click", function () {
-        var inputOp = $(this).data("op");
-        removeExtraOps();
-        input.push(inputOp);
-        removeInitialOps();
-        maxEnter();
-        updateMainDisplay();
-    });
-
-    $("#decimalBtn").on("click", function () {
-        if (input.indexOf(".") === -1) {
-            if (input.length === 0) {
-                input.push("0", ".");
-            } else {
+        if (inputData.match(/\+|\-|\*|\//)) {
+            var inputOp = inputData;
+            removeExtraOps();
+            input.push(inputOp);
+            removeInitialOps();
+            reduceMainDisplaySize();
+            updateMainDisplay();
+        }
+        if (e.target.id === 'decimalBtn') {
+            if (_.last(input) !== ".") {
+                if (input.length === 0) {
+                    input.push("0");
+                }
                 input.push(".");
             }
-        }
-        updateMainDisplay();
-    });
-
-    $("#percentBtn").on("click", function () {
-        if (input.length !== 0) {
-            input.push("/", 100);
             updateMainDisplay();
-        } else {
-            input.push(result, "/", 100);
-            getAnswer();
+        }
+        if (e.target.id === 'percentBtn') {
+            removeExtraOps();
+            if (input.length !== 0) {
+                input.push("/", 100);
+                updateMainDisplay();
+            } else {
+                input.push(result, "/", 100);
+                getAnswer();
+            }
         }
     });
 
@@ -227,20 +217,21 @@ $(document).ready(function () {
         updateMainDisplay();
     });
 
-    // = BUTTON
     $("#equalsBtn").on("click", function () {
-        getAnswer();
+        if (input.length > 2) {
+            getAnswer();
+        }
     });
 
     // MEMORY FUNCTIONS - M+, M- and MR
     $("#mPlusBtn").on("click", function () {
         memoryTotal += result;
-        document.getElementById("display2").innerText = "memory: " + memoryTotal;
+        document.getElementById("display_Sub").innerText = "memory: " + memoryTotal;
     });
 
     $("#mMinusBtn").on("click", function () {
         memoryTotal -= result;
-        document.getElementById("display2").innerText = "memory: " + memoryTotal;
+        document.getElementById("display_Sub").innerText = "memory: " + memoryTotal;
     });
 
     $("#mrBtn").on("click", function () {
@@ -255,64 +246,93 @@ $(document).ready(function () {
         $("#popup").toggle(400);
     });
 
-    //KEYBOARD SHORTCUTS
-    $("input").keydown(function (e) {
-        var key = e.which;
-        switch (key) {
-            case 96:
-                $("button[data-num=\"0\"]").click();
-                break;
-            case 97:
-                $("button[data-num=\"1\"]").click();
-                break;
-            case 98:
-                $("button[data-num=\"2\"]").click();
-                break;
-            case 99:
-                $("button[data-num=\"3\"]").click();
-                break;
-            case 100:
-                $("button[data-num=\"4\"]").click();
-                break;
-            case 101:
-                $("button[data-num=\"5\"]").click();
-                break;
-            case 102:
-                $("button[data-num=\"6\"]").click();
-                break;
-            case 103:
-                $("button[data-num=\"7\"]").click();
-                break;
-            case 104:
-                $("button[data-num=\"8\"]").click();
-                break;
-            case 105:
-                $("button[data-num=\"9\"]").click();
-                break;
-            case 13:
-                $("button[id = \"equalsBtn\"]").click();
-                break;
-            case 32:
-                $("button[id = \"allClearBtn\"]").click();
-                break;
-            case 110:
-                $("button[id = \"decimalBtn\"]").click();
-                break;
-            case 107:
-                $("button[data-op=\"+\"]").click();
-                break;
-            case 109:
-                $("button[data-op=\"-\"]").click();
-                break;
-            case 106:
-                $("button[data-op=\"*\"]").click();
-                break;
-            case 111:
-                $("button[data-op=\"/\"]").click();
-                break;
-        }
+    // map e.which to id 
+    var KEY_MAP = {
+        "13": "equalsBtn",
+        "32": "allClearBtn",
+        "96": "zeroBtn",
+        "97": "oneBtn",
+        "98": "twoBtn",
+        "99": "threeBtn",
+        "100": "fourBtn",
+        "101": "fiveBtn",
+        "102": "sixBtn",
+        "103": "sevenBtn",
+        "104": "eightBtn",
+        "105": "nineBtn",
+        "106": "muliplyBtn",
+        "107": "plusBtn",
+        "108": "",
+        "109": "minusBtn",
+        "110": "decimalBtn",
+        "111": "divideBtn"
+    };
+
+    document.getElementById('body').addEventListener('keydown', function (e) {
+        document.querySelector("button[id=" + KEY_MAP[e.which] + "]").click();
     });
 }); //docready
+
+
+// deprecated code
+
+//KEYBOARD SHORTCUTS
+// $("body").keydown(function(e) {
+//     var key = e.which;
+//     switch (key) {
+//         case 96:
+//             $("button[data-num=\"0\"]").click();
+//             break;
+//         case 97:
+//             $("button[data-num=\"1\"]").click();
+//             break;
+//         case 98:
+//             $("button[data-num=\"2\"]").click();
+//             break;
+//         case 99:
+//             $("button[data-num=\"3\"]").click();
+//             break;
+//         case 100:
+//             $("button[data-num=\"4\"]").click();
+//             break;
+//         case 101:
+//             $("button[data-num=\"5\"]").click();
+//             break;
+//         case 102:
+//             $("button[data-num=\"6\"]").click();
+//             break;
+//         case 103:
+//             $("button[data-num=\"7\"]").click();
+//             break;
+//         case 104:
+//             $("button[data-num=\"8\"]").click();
+//             break;
+//         case 105:
+//             $("button[data-num=\"9\"]").click();
+//             break;
+//         case 13:
+//             $("button[id = \"equalsBtn\"]").click();
+//             break;
+//         case 32:
+//             $("button[id = \"allClearBtn\"]").click();
+//             break;
+//         case 110:
+//             $("button[id = \"decimalBtn\"]").click();
+//             break;
+//         case 107:
+//             $("button[data-op=\"+\"]").click();
+//             break;
+//         case 109:
+//             $("button[data-op=\"-\"]").click();
+//             break;
+//         case 106:
+//             $("button[data-op=\"*\"]").click();
+//             break;
+//         case 111:
+//             $("button[data-op=\"/\"]").click();
+//             break;
+//     }
+// });
 
 /***/ }),
 /* 1 */
@@ -2241,7 +2261,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  border: 0;\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif;\n  background-color: #A0C4E2; }\n\nh2 {\n  font-size: 0.8em;\n  text-align: center; }\n\n.dummy {\n  height: 0px;\n  width: 100%;\n  border: 0;\n  padding: 0;\n  margin: 0; }\n\n.display-primary,\n.display-secondary {\n  display: block;\n  font-size: 1em;\n  padding: 0 5px 0 5px;\n  word-wrap: break-word; }\n\n.display-secondary {\n  font-size: 0.4em;\n  position: absolute;\n  bottom: 0px;\n  right: 0px; }\n\nhr {\n  border-top: 3px solid #4D4D4D;\n  margin-top: 40px; }\n\nli {\n  list-style-type: none; }\n\n.calculator,\n#popup {\n  background-color: #D9D9CD;\n  border-radius: 10px;\n  box-shadow: 3px 3px 15px black, 1px 1px 3px white inset;\n  padding: 20px;\n  margin: 0 auto;\n  margin-top: 30px;\n  width: 300px;\n  height: 410px; }\n\n.screen {\n  background-color: #D2E4E2;\n  font-size: 2em;\n  height: 55px;\n  width: 90%;\n  display: block;\n  border-width: 8px 12px 8px 12px;\n  border-color: #828284;\n  border-style: solid;\n  border-radius: 2px;\n  margin: 0 auto;\n  padding-right: 5px;\n  position: relative;\n  text-align: right; }\n\n.keypad {\n  margin: 0 auto;\n  margin-top: 10px;\n  height: 200px;\n  width: 94.5%; }\n\n.keypad-btn {\n  background-color: #484848;\n  color: #FFF;\n  box-shadow: 1px 2px 1px;\n  margin: 3px;\n  font-size: 1em;\n  height: 40px;\n  width: 50.5px;\n  float: left; }\n  .keypad-btn:hover {\n    border: 1px solid #0892D0; }\n\n.number-btn {\n  background-color: #898989;\n  color: #FFF; }\n\n.clear-btn {\n  background-color: #AD6074; }\n\n.plus-btn {\n  float: right;\n  height: 86px; }\n\n#popup {\n  display: none;\n  padding: 5px 20px 5px 20px;\n  height: auto;\n  font-weight: bold;\n  line-height: 26px;\n  position: absolute;\n  top: 10px;\n  left: 10px; }\n\n#popup p1,\n#popup li {\n  margin-bottom: 0;\n  margin-top: 0; }\n", ""]);
+exports.push([module.i, "body {\n  border: 0;\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif;\n  background-color: #A0C4E2; }\n\nh2 {\n  font-size: 0.8em;\n  text-align: center; }\n\n.dummy {\n  height: 20px;\n  width: 100%;\n  border: 0;\n  padding: 0;\n  margin: 0; }\n\n.display-primary,\n.display-secondary {\n  display: block;\n  font-size: 1em;\n  padding: 0 5px 0 5px;\n  word-wrap: break-word; }\n\n.display-secondary {\n  font-size: 0.4em;\n  position: absolute;\n  bottom: 0px;\n  right: 0px; }\n\nhr {\n  border-top: 3px solid #4D4D4D;\n  margin-top: 40px; }\n\nli {\n  list-style-type: none; }\n\n.calculator,\n#popup {\n  background-color: #D9D9CD;\n  border-radius: 10px;\n  box-shadow: 3px 3px 15px black, 1px 1px 3px white inset;\n  padding: 20px;\n  margin: 0 auto;\n  margin-top: 30px;\n  width: 300px;\n  height: 410px; }\n\n.screen {\n  background-color: #D2E4E2;\n  font-size: 2em;\n  height: 55px;\n  width: 90%;\n  display: block;\n  border-width: 8px 12px 8px 12px;\n  border-color: #828284;\n  border-style: solid;\n  border-radius: 2px;\n  margin: 0 auto;\n  padding-right: 5px;\n  position: relative;\n  text-align: right; }\n\n.keypad {\n  margin: 0 auto;\n  margin-top: 10px;\n  height: 200px;\n  width: 94.5%; }\n\n.keypad-btn {\n  background-color: #484848;\n  color: #FFF;\n  box-shadow: 1px 2px 1px;\n  margin: 3px;\n  font-size: 1em;\n  height: 40px;\n  width: 50.5px;\n  float: left; }\n  .keypad-btn:hover {\n    border: 1px solid #0892D0; }\n\n.number-btn {\n  background-color: #898989;\n  color: #FFF; }\n\n.clear-btn {\n  background-color: #AD6074; }\n\n.plus-btn {\n  float: right;\n  height: 86px; }\n\n#popup {\n  display: none;\n  padding: 5px 20px 5px 20px;\n  height: auto;\n  font-weight: bold;\n  line-height: 26px;\n  position: absolute;\n  top: 10px;\n  left: 10px; }\n\n#popup p1,\n#popup li {\n  margin-bottom: 0;\n  margin-top: 0; }\n", ""]);
 
 // exports
 

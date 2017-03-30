@@ -9,13 +9,12 @@
     <!--<link rel="stylesheet" href="src/style.css">-->
 </head>
 
-<body>
+<body id="body">
     <div id="main" class="calculator">
-        <input class="dummy" />
         <h2>WILLIS JS500i ELECTRONIC</h2>
         <div id="screen" class="screen">
             <p1 id="display_Main" class="display-primary">0</p1>
-            <p2 id="display2" class="display-secondary">Ans</p2>
+            <p2 id="display_Sub" class="display-secondary">Ans</p2>
         </div>
         <hr>
         <div id="keypad" class="keypad">
@@ -23,26 +22,26 @@
             <button id="mPlusBtn" class="keypad-btn">M+</button>
             <button id="mMinusBtn" class="keypad-btn">M-</button>
             <button id="percentBtn" class="keypad-btn">%</button>
-            <button id="divisionBtn" data-op="/" class="keypad-btn op-btn">/</button>
+            <button data-key="/" id="divideBtn" data-op="/" class="keypad-btn op-btn">/</button>
             <button id="shortcuts" class="keypad-btn"><i class="fa fa-keyboard-o" aria-hidden="true"></i></button>
-            <button data-num="7" class="keypad-btn number-btn">7</button>
-            <button data-num="8" class="keypad-btn number-btn">8</button>
-            <button data-num="9" class="keypad-btn number-btn">9</button>
-            <button id="timesBtn" data-op="*" class="keypad-btn op-btn">X</button>
+            <button id="sevenBtn" data-key="7" class="keypad-btn number-btn">7</button>
+            <button id="eightBtn" data-key="8" class="keypad-btn number-btn">8</button>
+            <button id="nineBtn" data-key="9" class="keypad-btn number-btn">9</button>
+            <button data-key="*" id="multiplyBtn" data-op="*" class="keypad-btn op-btn">*</button>
             <button id="posnegBtn" class="keypad-btn">+/-</button>
-            <button data-num="4" class="keypad-btn number-btn">4</button>
-            <button data-num="5" class="keypad-btn number-btn">5</button>
-            <button data-num="6" class="keypad-btn number-btn">6</button>
-            <button id="minusBtn" data-op="-" class="keypad-btn op-btn">-</button>
+            <button id="fourBtn" data-key="4" class="keypad-btn number-btn">4</button>
+            <button id="fiveBtn" data-key="5" class="keypad-btn number-btn">5</button>
+            <button id="sixBtn" data-key="6" class="keypad-btn number-btn">6</button>
+            <button data-key="-" id="minusBtn" data-op="-" class="keypad-btn op-btn">-</button>
             <button id="clearBtn" class="keypad-btn clear-btn">C</button>
-            <button data-num="1" class="keypad-btn number-btn">1</button>
-            <button data-num="2" class="keypad-btn number-btn">2</button>
-            <button data-num="3" class="keypad-btn number-btn">3</button>
+            <button id="oneBtn" data-key="1" class="keypad-btn number-btn">1</button>
+            <button id="twoBtn" data-key="2" class="keypad-btn number-btn">2</button>
+            <button id="threeBtn" data-key="3" class="keypad-btn number-btn">3</button>
             <button id="plusBtn" class="keypad-btn op-btn plus-btn" data-op="+">+</button>
-            <button id="allClearBtn" class="keypad-btn clear-btn">AC</button>
-            <button id="zeroBtn" data-num="0" class="keypad-btn number-btn">0</button>
+            <button data-key=" " id="allClearBtn" class="keypad-btn clear-btn">AC</button>
+            <button id="zeroBtn" data-key="0" class="keypad-btn number-btn">0</button>
             <button id="decimalBtn" class="keypad-btn">.</button>
-            <button id="equalsBtn" class="keypad-btn">=</button>
+            <button data-key="Enter" id="equalsBtn" class="keypad-btn">=</button>
         </div>
     </div>
     <div id="popup">
