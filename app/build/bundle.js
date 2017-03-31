@@ -213,9 +213,23 @@ window.addEventListener('load', function () {
     });
 
     var KEY_MAP = {
-        "13": "equalsBtn", "32": "allClearBtn", "96": "zeroBtn", "97": "oneBtn", "98": "twoBtn", "99": "threeBtn",
-        "100": "fourBtn", "101": "fiveBtn", "102": "sixBtn", "103": "sevenBtn", "104": "eightBtn", "105": "nineBtn",
-        "106": "multiplyBtn", "107": "plusBtn", "109": "minusBtn", "110": "decimalBtn", "111": "divideBtn"
+        "13": "equalsBtn",
+        "32": "allClearBtn",
+        "96": "zeroBtn",
+        "97": "oneBtn",
+        "98": "twoBtn",
+        "99": "threeBtn",
+        "100": "fourBtn",
+        "101": "fiveBtn",
+        "102": "sixBtn",
+        "103": "sevenBtn",
+        "104": "eightBtn",
+        "105": "nineBtn",
+        "106": "multiplyBtn",
+        "107": "plusBtn",
+        "109": "minusBtn",
+        "110": "decimalBtn",
+        "111": "divideBtn"
     };
 
     document.getElementById('body').addEventListener('keydown', function (e) {
