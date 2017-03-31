@@ -237,12 +237,6 @@ window.addEventListener('load', function () {
     });
 });
 
-module.exports = {
-
-    removeInitialOps: removeInitialOps,
-    removeExtraZeroes: removeExtraZeroes
-};
-
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -2170,7 +2164,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  border: 0;\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif;\n  background-color: #A0C4E2; }\n\nh2 {\n  font-size: 0.8em;\n  text-align: center; }\n\n.dummy {\n  height: 20px;\n  width: 100%;\n  border: 0;\n  padding: 0;\n  margin: 0; }\n\n.display-primary,\n.display-secondary {\n  display: block;\n  font-size: 1em;\n  padding: 0 5px 0 5px;\n  word-wrap: break-word; }\n\n.display-secondary {\n  font-size: 0.4em;\n  position: absolute;\n  bottom: 0px;\n  right: 0px; }\n\nhr {\n  border-top: 3px solid #4D4D4D;\n  margin-top: 40px; }\n\nli {\n  list-style-type: none; }\n\n.calculator,\n#popup {\n  background-color: #D9D9CD;\n  border-radius: 10px;\n  box-shadow: 3px 3px 15px black, 1px 1px 3px white inset;\n  padding: 20px;\n  margin: 0 auto;\n  margin-top: 30px;\n  width: 300px;\n  height: 410px; }\n\n.screen {\n  background-color: #D2E4E2;\n  font-size: 2em;\n  height: 55px;\n  width: 90%;\n  display: block;\n  border-width: 8px 12px 8px 12px;\n  border-color: #828284;\n  border-style: solid;\n  border-radius: 2px;\n  margin: 0 auto;\n  padding-right: 5px;\n  position: relative;\n  text-align: right; }\n\n.keypad {\n  margin: 0 auto;\n  margin-top: 10px;\n  height: 200px;\n  width: 94.5%; }\n\n.keypad-btn {\n  background-color: #484848;\n  color: #FFF;\n  box-shadow: 1px 2px 1px;\n  margin: 3px;\n  font-size: 1em;\n  height: 40px;\n  width: 50.5px;\n  float: left; }\n  .keypad-btn:hover {\n    border: 1px solid #0892D0; }\n\n.number-btn {\n  background-color: #898989;\n  color: #FFF; }\n\n.clear-btn {\n  background-color: #AD6074; }\n\n.plus-btn {\n  float: right;\n  height: 86px; }\n\n#popup {\n  display: none;\n  padding: 5px 20px 5px 20px;\n  height: auto;\n  font-weight: bold;\n  line-height: 26px;\n  position: absolute;\n  top: 10px;\n  left: 10px; }\n\n#popup p1,\n#popup li {\n  margin-bottom: 0;\n  margin-top: 0; }\n", ""]);
+exports.push([module.i, "body {\n  border: 0;\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif;\n  background-color: #A0C4E2; }\n\nh2 {\n  font-size: 0.8em;\n  text-align: center; }\n\n.display-primary,\n.display-secondary {\n  display: block;\n  font-size: 1em;\n  padding: 0 5px 0 5px;\n  word-wrap: break-word; }\n\n.display-secondary {\n  font-size: 0.4em;\n  position: absolute;\n  bottom: 0px;\n  right: 0px; }\n\nhr {\n  border-top: 3px solid #4D4D4D;\n  margin-top: 40px; }\n\nli {\n  list-style-type: none; }\n\n.calculator,\n#popup {\n  background-color: #D9D9CD;\n  border-radius: 10px;\n  box-shadow: 3px 3px 15px black, 1px 1px 3px white inset;\n  padding: 20px;\n  margin: 0 auto;\n  margin-top: 30px;\n  width: 300px;\n  height: 410px; }\n\n.screen {\n  background-color: #D2E4E2;\n  font-size: 2em;\n  height: 55px;\n  width: 90%;\n  display: block;\n  border-width: 8px 12px 8px 12px;\n  border-color: #828284;\n  border-style: solid;\n  border-radius: 2px;\n  margin: 0 auto;\n  padding-right: 5px;\n  position: relative;\n  text-align: right; }\n\n.keypad {\n  margin: 0 auto;\n  margin-top: 10px;\n  height: 200px;\n  width: 94.5%; }\n\n.keypad-btn {\n  background-color: #484848;\n  color: #FFF;\n  box-shadow: 1px 2px 1px;\n  margin: 3px;\n  font-size: 1em;\n  height: 40px;\n  width: 50.5px;\n  float: left; }\n  .keypad-btn:hover {\n    border: 1px solid #0892D0; }\n\n.number-btn {\n  background-color: #898989;\n  color: #FFF; }\n\n.clear-btn {\n  background-color: #AD6074; }\n\n.plus-btn {\n  float: right;\n  height: 86px; }\n\n#popup {\n  display: none;\n  padding: 5px 20px 5px 20px;\n  height: auto;\n  font-weight: bold;\n  line-height: 26px;\n  position: absolute;\n  top: 10px;\n  left: 10px; }\n\n#popup p1,\n#popup li {\n  margin-bottom: 0;\n  margin-top: 0; }\n", ""]);
 
 // exports
 
