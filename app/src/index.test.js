@@ -1,6 +1,7 @@
 const expect = require('expect');
 const fs = require('fs');
 const jsdom = require('jsdom');
+const removeInitialOps = require('./index.js').removeInitialOps;
 
 describe('Check test setup', () => {
     it('should run a test', () => {

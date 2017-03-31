@@ -237,6 +237,12 @@ window.addEventListener('load', function () {
     });
 });
 
+module.exports = {
+
+    removeInitialOps: removeInitialOps,
+    removeExtraZeroes: removeExtraZeroes
+};
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {

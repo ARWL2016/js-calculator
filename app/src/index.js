@@ -171,3 +171,9 @@ window.addEventListener('load', function() {
     });
 
 });
+
+module.exports = {
+
+    removeInitialOps,
+    removeExtraZeroes
+}
