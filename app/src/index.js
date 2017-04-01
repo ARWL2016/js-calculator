@@ -4,12 +4,12 @@ const $ = require("jQuery");
 const _ = require("underscore");
 require("./scss/style.scss");
 
-window.addEventListener('load', function(){ 
+window.addEventListener('load', function() {
 
     let input = [];
     let result = 0;
     let memoryTotal = 0;
-    let inputData = ''; 
+    let inputData = '';
     const display = document.getElementById("display");
     const subDisplay = document.getElementById("subDisplay");
     const MAX_RESULT = 999999999999;
@@ -57,12 +57,12 @@ window.addEventListener('load', function(){
     }
 
     function setMemory() {
-        result = 0; 
-        display.innerText = 0; 
+        result = 0;
+        display.innerText = 0;
         subDisplay.innerText = `memory: ${memoryTotal}`;
     }
 
-    
+
 
     document.getElementById("keypad").addEventListener("click", (e) => {
         inputData = e.target.innerText;
@@ -102,73 +102,72 @@ window.addEventListener('load', function(){
             }
 
         } else if (e.target.id === 'posnegBtn') {
-          if (input[0] === "+") {
-            input.shift();
-            input.unshift("-");
-          } 
-          else if (input[0] === "-") {
-              input.shift();
-              input.unshift("+");
-          } else {
-            input.unshift('-')
-          }
-          updateMainDisplay();
+            if (input[0] === "+") {
+                input.shift();
+                input.unshift("-");
+            } else if (input[0] === "-") {
+                input.shift();
+                input.unshift("+");
+            } else {
+                input.unshift('-')
+            }
+            updateMainDisplay();
 
-        } 
-        
-        else if (e.target.id === 'equalsBtn') {
+        } else if (e.target.id === 'equalsBtn') {
             if (input.length > 2) {
-              getAnswer();
+                getAnswer();
             }
-        } 
-        
-        else if (e.target.id === 'mPlusBtn') {
+        } else if (e.target.id === 'mPlusBtn') {
             memoryTotal += result;
-            setMemory(); 
-        } 
-        
-        else if (e.target.id === 'mMinusBtn') {
-          memoryTotal -= result;
-          setMemory(); 
-        } 
-        
-        else if (e.target.id === 'mrBtn') {
+            setMemory();
+        } else if (e.target.id === 'mMinusBtn') {
+            memoryTotal -= result;
+            setMemory();
+        } else if (e.target.id === 'mrBtn') {
             if (_.last(input) !== memoryTotal) {
-              input.push(memoryTotal);
-              updateMainDisplay();
+                input.push(memoryTotal);
+                updateMainDisplay();
             }
-        }
-
-        else if (e.target.id === 'allClearBtn') {
-          input = [];
-          display.innerText = 0;
-          display.setAttribute("style", "font-size: 1em");
-          subDisplay.innerText = "Ans";
-          memoryTotal = 0;
-          result = 0;
-        }
-
-        else if (e.target.id === 'clearBtn') {
-          input.pop();
-          updateMainDisplay();
-          if (memoryTotal === 0) {
+        } else if (e.target.id === 'allClearBtn') {
+            input = [];
+            display.innerText = 0;
+            display.setAttribute("style", "font-size: 1em");
             subDisplay.innerText = "Ans";
-          } else {
-            subDisplay.innerText = `memory: ${memoryTotal}`;
-          }
+            memoryTotal = 0;
+            result = 0;
+        } else if (e.target.id === 'clearBtn') {
+            input.pop();
+            updateMainDisplay();
+            if (memoryTotal === 0) {
+                subDisplay.innerText = "Ans";
+            } else {
+                subDisplay.innerText = `memory: ${memoryTotal}`;
+            }
         }
     })
 
     const KEY_MAP = {
-        "13": "equalsBtn", "32": "allClearBtn", "96": "zeroBtn", "97": "oneBtn", "98": "twoBtn", "99": "threeBtn",
-        "100": "fourBtn", "101": "fiveBtn", "102": "sixBtn", "103": "sevenBtn", "104": "eightBtn", "105": "nineBtn", 
-        "106": "multiplyBtn", "107": "plusBtn", "109": "minusBtn", "110": "decimalBtn", "111": "divideBtn"
+        "13": "equalsBtn",
+        "32": "allClearBtn",
+        "96": "zeroBtn",
+        "97": "oneBtn",
+        "98": "twoBtn",
+        "99": "threeBtn",
+        "100": "fourBtn",
+        "101": "fiveBtn",
+        "102": "sixBtn",
+        "103": "sevenBtn",
+        "104": "eightBtn",
+        "105": "nineBtn",
+        "106": "multiplyBtn",
+        "107": "plusBtn",
+        "109": "minusBtn",
+        "110": "decimalBtn",
+        "111": "divideBtn"
     };
 
     document.getElementById('body').addEventListener('keydown', (e) => {
         document.querySelector("button[id=" + KEY_MAP[e.which] + "]").click();
     });
 
-}); 
-
-
+});
