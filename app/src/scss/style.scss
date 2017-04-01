@@ -13,14 +13,6 @@ h2 {
     text-align: center;
 }
 
-.dummy {
-    height: 20px;
-    width: 100%;
-    border: 0;
-    padding: 0;
-    margin: 0;
-}
-
 .display-primary,
 .display-secondary {
     display: block;
@@ -90,6 +82,8 @@ li {
     height: $btn-height;
     width: $btn-width;
     float: left;
+    cursor: pointer; 
+    cursor: hand; 
     &:hover {
         border: 1px solid $btn-hover-outline-color;
     }
