@@ -64,7 +64,7 @@ window.addEventListener('load', function() {
     document.getElementById("keypad").addEventListener("click", (e) => {
         inputData = e.target.innerText;
 
-        if (inputData.match(/[0-9]/)) {
+        if (inputData.match(/[0-9]/) && input.length <= 45) {
             input.push(inputData);
             if (inputData === 0) {
                 removeExtraZeroes();

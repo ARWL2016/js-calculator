@@ -24,3 +24,4 @@ JQuery - project prior to replacing JQuery with native JS
 - btn clicks stick if you move to keyboard input 
 - button inside link is officially invalid 
  
+ 
