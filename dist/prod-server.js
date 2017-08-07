@@ -4,7 +4,7 @@ var compression = require('compression');
 
 var app = express();
 app.use(compression());
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 
 app.use(express.static("dist"));
 
