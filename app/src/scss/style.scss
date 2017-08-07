@@ -31,6 +31,7 @@ li {
     font-size: 1em;
     padding: 0 5px 0 5px;
     word-wrap: break-word;
+    margin: 0;
 }
 
 .display-secondary {
@@ -89,6 +90,10 @@ li {
     &:hover {
         border: 1px solid $btn-hover-outline-color;
     }
+}
+
+a.keypad-btn {
+  
 }
 
 .number-btn {

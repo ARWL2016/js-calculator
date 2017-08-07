@@ -21,7 +21,8 @@ li {
   display: block;
   font-size: 1em;
   padding: 0 5px 0 5px;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  margin: 0; }
 
 .display-secondary {
   font-size: 0.4em;
