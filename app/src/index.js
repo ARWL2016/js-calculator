@@ -62,6 +62,9 @@ window.addEventListener('load', function() {
     }
 
     document.getElementById("keypad").addEventListener("click", (e) => {
+
+      if (e.target && e.target.nodeName == "BUTTON") {
+        
         inputData = e.target.innerText;
 
         if (inputData.match(/[0-9]/) && input.length <= 45) {
@@ -141,7 +144,8 @@ window.addEventListener('load', function() {
                 subDisplay.innerText = `memory: ${memoryTotal}`;
             }
         }
-    })
+      }
+    });
 
     const KEY_MAP = {
         "13": "equalsBtn",
