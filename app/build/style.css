@@ -1,0 +1,109 @@
+body {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #A0C4E2; }
+
+h2 {
+  font-size: 0.8em;
+  text-align: center; }
+
+hr {
+  border-top: 3px solid #4D4D4D;
+  margin-top: 40px; }
+
+li {
+  list-style-type: none; }
+
+.display-primary,
+.display-secondary {
+  display: block;
+  font-size: 1em;
+  padding: 0 5px 0 5px;
+  word-wrap: break-word; }
+
+.display-secondary {
+  font-size: 0.4em;
+  position: absolute;
+  bottom: 0px;
+  right: 0px; }
+
+.calculator {
+  background-color: #D9D9CD;
+  border-radius: 10px;
+  box-shadow: 3px 3px 15px black, 1px 1px 3px white inset;
+  padding: 20px;
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 300px;
+  height: 410px; }
+
+.screen {
+  background-color: #D2E4E2;
+  font-size: 2em;
+  height: 55px;
+  width: 90%;
+  display: block;
+  border-width: 8px 12px 8px 12px;
+  border-color: #828284;
+  border-style: solid;
+  border-radius: 2px;
+  margin: 0 auto;
+  padding-right: 5px;
+  position: relative;
+  text-align: right; }
+
+.keypad {
+  margin: 0 auto;
+  margin-top: 10px;
+  height: 200px;
+  width: 280px; }
+
+.keypad-btn {
+  background-color: #484848;
+  color: #FFF;
+  box-shadow: 1px 2px 1px;
+  margin: 3px;
+  font-size: 1em;
+  height: 40px;
+  width: 50px;
+  float: left;
+  cursor: pointer;
+  cursor: hand; }
+  .keypad-btn:hover {
+    border: 1px solid #0892D0; }
+
+.number-btn {
+  background-color: #898989;
+  color: #FFF; }
+
+.clear-btn {
+  background-color: #AD6074; }
+
+.plus-btn {
+  float: right;
+  height: 86px; }
+
+@media (max-width: 340px) {
+  body {
+    font-size: 0.9em; }
+  .calculator {
+    margin-top: 10px;
+    width: 240px;
+    height: 350px; }
+  .screen {
+    width: 200px; }
+  hr {
+    margin-top: 30px;
+    width: 220px; }
+  .keypad {
+    width: 220px; }
+  .keypad-btn {
+    margin: 2px;
+    width: 40px;
+    height: 32px; }
+  .plus-btn {
+    height: 68px; } }
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZS5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/
