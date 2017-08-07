@@ -1,8 +1,9 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    devtool: 'inline-souce-map',
+    devtool: 'inline-source-map',
     entry: [
         path.resolve(__dirname, 'app/src/index')
     ],
@@ -24,14 +25,17 @@ module.exports = {
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
-                use: [
-                    { loader: "style-loader" },
-                    { loader: "css-loader" },
-                    { loader: "sass-loader" }
-                ]
+                use: ExtractTextPlugin.extract({
+                  fallback: 'style-loader', 
+                  use: ['css-loader', 'sass-loader']
+                })
+
             }
         ]
-    }
+    }, 
+    plugins: [
+      new ExtractTextPlugin('style.css')
+    ]
 
 
 }

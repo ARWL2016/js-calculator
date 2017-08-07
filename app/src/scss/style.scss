@@ -1,4 +1,5 @@
 @import "style-default";
+
 // base styles 
 body {
     border: 0;
@@ -13,6 +14,17 @@ h2 {
     text-align: center;
 }
 
+hr {
+    border-top: 3px solid $calculator-color;
+    margin-top: 40px;
+}
+
+li {
+    list-style-type: none;
+}
+
+
+// calculator styles
 .display-primary,
 .display-secondary {
     display: block;
@@ -28,17 +40,7 @@ h2 {
     right: 0px;
 }
 
-hr {
-    border-top: 3px solid #4D4D4D;
-    margin-top: 40px;
-}
-
-li {
-    list-style-type: none;
-}
-
-.calculator,
-#popup {
+.calculator {
     background-color: #D9D9CD;
     border-radius: 10px;
     box-shadow: 3px 3px 15px black, 1px 1px 3px white inset;
@@ -69,7 +71,7 @@ li {
     margin: 0 auto;
     margin-top: 10px;
     height: 200px;
-    width: 94.5%;
+    width: 280px;
 }
 
 // button styles
@@ -100,23 +102,9 @@ li {
 
 .plus-btn {
     float: right;
+    
     height: 86px;
 }
 
-// popup component
-#popup {
-    display: none;
-    padding: 5px 20px 5px 20px;
-    height: auto;
-    font-weight: bold;
-    line-height: 26px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
+@import "media-queries";
 
-#popup p1,
-#popup li {
-    margin-bottom: 0;
-    margin-top: 0;
-}

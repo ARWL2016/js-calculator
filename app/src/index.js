@@ -1,6 +1,5 @@
 "use strict";
 
-const $ = require("jQuery");
 const _ = require("underscore");
 require("./scss/style.scss");
 
@@ -62,11 +61,9 @@ window.addEventListener('load', function() {
         subDisplay.innerText = `memory: ${memoryTotal}`;
     }
 
-
-
     document.getElementById("keypad").addEventListener("click", (e) => {
         inputData = e.target.innerText;
-        console.log(e.target.id);
+
         if (inputData.match(/[0-9]/)) {
             input.push(inputData);
             if (inputData === 0) {
