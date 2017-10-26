@@ -1,6 +1,5 @@
 "use strict";
 
-const $ = require("jQuery");
 const _ = require("underscore");
 require("./scss/style.scss");
 
@@ -62,12 +61,13 @@ window.addEventListener('load', function() {
         subDisplay.innerText = `memory: ${memoryTotal}`;
     }
 
-
-
     document.getElementById("keypad").addEventListener("click", (e) => {
+
+      if (e.target && e.target.nodeName == "BUTTON") {
+        
         inputData = e.target.innerText;
-        console.log(e.target.id);
-        if (inputData.match(/[0-9]/)) {
+
+        if (inputData.match(/[0-9]/) && input.length <= 45) {
             input.push(inputData);
             if (inputData === 0) {
                 removeExtraZeroes();
@@ -144,7 +144,8 @@ window.addEventListener('load', function() {
                 subDisplay.innerText = `memory: ${memoryTotal}`;
             }
         }
-    })
+      }
+    });
 
     const KEY_MAP = {
         "13": "equalsBtn",
