@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node dist/prod-server.js",
     "start:watch": "live-server app",
-    "start:dev": "npm-run-all --parallel start:watch build:watch",
+    "dev": "npm-run-all --parallel start:watch build:watch",
     "lint": "eslint app/src/index.js dist server.js --fix",
     "lint:watch": "watch \"npm run lint\" .",
     "build:dev": "webpack --config webpack.config.dev.js",

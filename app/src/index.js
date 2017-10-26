@@ -37,7 +37,7 @@ window.addEventListener('load', function() {
     }
 
     function removeExtraZeroes() {
-        if (input[0] === 0 && input[1] !== ".") {
+        if (input[0] === '0' && input[1] !== ".") {
             input.pop();
         }
     }
@@ -63,19 +63,22 @@ window.addEventListener('load', function() {
 
     document.getElementById("keypad").addEventListener("click", (e) => {
 
+      console.log(input);
+
       if (e.target && e.target.nodeName == "BUTTON") {
         
         inputData = e.target.innerText;
 
         if (inputData.match(/[0-9]/) && input.length <= 45) {
+          console.log(inputData, typeof inputData);
             input.push(inputData);
-            if (inputData === 0) {
+            if (inputData === '0') {
                 removeExtraZeroes();
             }
             reduceMainDisplaySize();
             updateMainDisplay();
 
-        } else if (inputData.match(/([+-\/\*])/) && inputData !== '+/-' && inputData !== 'M+' && inputData !== 'M-') {
+        } else if (inputData.match(/([+\-\/\*])/) && inputData !== '+/-' && inputData !== 'M+' && inputData !== 'M-') {
             removeExtraOps();
             input.push(inputData);
             removeInitialOps();
@@ -83,7 +86,19 @@ window.addEventListener('load', function() {
             updateMainDisplay();
 
         } else if (e.target.id === 'decimalBtn') {
-            if (_.last(input) !== ".") {
+
+          /**
+           * Only allow a decimal point to be entered if there is an operator ahead of a previous decimal
+           * or if there is no operator or decimal
+           */
+
+            let lastIndexOfOp = -1;
+            ['/','*','-','+'].forEach(op => {
+              let k = input.lastIndexOf(op);
+              if (k > lastIndexOfOp) lastIndexOfOp = k;
+            });
+
+            if(lastIndexOfOp >= input.lastIndexOf('.')) {
                 if (input.length === 0) {
                     input.push("0");
                 }

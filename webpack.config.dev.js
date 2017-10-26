@@ -10,7 +10,7 @@ module.exports = {
 
     target: "web", //default
     output: {
-        path: path.resolve(__dirname, 'app/build'),
+        path: path.resolve(__dirname, 'app/dev-build'),
         publicPath: '/',
         filename: 'bundle.js'
     },
