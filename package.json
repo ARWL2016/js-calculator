@@ -2,7 +2,7 @@
   "name": "js-calculator",
   "version": "1.0.0",
   "engines": {
-    "node": "6.9.2"
+    "node": "10.18.0"
   },
   "description": "https://www.freecodecamp.com/challenges/build-a-javascript-calculator  \r https://github.com/ARWL2016/js-calculator   \r http://codepen.io/arw2014e5/pen/gLpWgj",
   "main": "index.js",
